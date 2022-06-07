@@ -4,4 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+window.Vue = require('vue');
+
+import Vue from 'vue';
+import App from './views/App.vue';
+
+const root = new Vue({
+    el: '#root',
+    render: h => h(App)
+});

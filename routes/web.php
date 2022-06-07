@@ -13,10 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.home');
-});
 
 Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('admin.home');
+Route::middleware('auth')
+->prefix('admin')
+->name('admin.')
+->namespace('Admin')
+->group( function(){
+
+    // la URI sarà comunque "/admin" -> ciò viene specificato nel metodo "prefix"
+    // il name sarà "admin.home" -> ciò viene specificato nel metodo "name" valido per l'intero group (punto-3)
+    Route::get('/', 'HomeController@index')->name('home');
+
+    // la URI per queste rotte sarà "localhost/admin/posts" -> ciò viene specificato nel metodo "prefix" 
+    Route::resource('posts', 'PostController');
+});
+
+Route::get('{any?}', function(){
+    
+    return view('guest.home');
+
+})->where("any", ".*");

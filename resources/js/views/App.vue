@@ -3,10 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Example Component</div>
+                    <Header />
+                    <div class="card-header">Benvenuto</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        Sito in costruzione
                     </div>
                 </div>
             </div>
@@ -15,9 +16,13 @@
 </template>
 
 <script>
+import Header from '../components/Header.vue';
+
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        name: 'App',
+
+        components: {
+            Header,
         }
     }
 </script>
